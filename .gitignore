@@ -1,6 +1,8 @@
-.vscode
-bin/*
-obj/*
-*.layout
-*.depend
-*.cbp
+*/.vscode
+*/bin/*
+*/obj/*
+*/*.layout
+*/*.depend
+*/*.cbp
+*/*.exe
+*/*.docx
