@@ -6,4 +6,5 @@
 */*.cbp
 */*.exe
 */*/*.exe
-*/*.docx
+*/*/*.docx
+*.docx
