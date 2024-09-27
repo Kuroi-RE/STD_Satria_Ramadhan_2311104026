@@ -98,9 +98,6 @@ int main() {
     cout << "Jumlah bilangan Genap: " << jumlah << endl;
     // Soal 7
 
-    // TUGAS LATIHAN
-    
-
     return 0;
 
 }
