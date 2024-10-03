@@ -1,4 +1,4 @@
-# Hi, I'm Satria Ramadhan! 👋
+# Hi there, I'm Satria Ramadhan! 👋
 
 ## Pratikum 🚀
 
@@ -19,6 +19,9 @@ Repository untuk pengumpulan laporan pratikum dari mata kuliah Struktur Data
   - _Memahami struktur data pada bahasa pemrograman C++_
   - _Memahami Perulangan pada bahasa pemrograman C++_
 - Pertemuan 02
+  - _Memahami Array_
+  - _Memahami array 3dimensi_
+  - _Fungsi & Prosedure_
 
 ## Lessons Learned
 
