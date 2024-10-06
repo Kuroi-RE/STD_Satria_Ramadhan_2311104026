@@ -1,7 +1,5 @@
 # Hi there, I'm Satria Ramadhan! 👋
 
-## Pratikum 🚀
-
 Repository untuk pengumpulan laporan pratikum dari mata kuliah Struktur Data
 
 ## Tech
@@ -25,4 +23,4 @@ Repository untuk pengumpulan laporan pratikum dari mata kuliah Struktur Data
 
 ## Lessons Learned
 
-Mengetahui dan memahami bahasa Pemrograman C++
+Mengetahui dan memahami Struktur Data dalam pemrogramman
