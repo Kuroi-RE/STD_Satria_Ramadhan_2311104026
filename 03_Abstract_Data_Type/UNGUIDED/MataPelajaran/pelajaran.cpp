@@ -1,6 +1,5 @@
-// pelajaran.cpp
-#include "pelajaran.h"
 #include <iostream>
+#include "pelajaran.h"
 using namespace std;
 
 Pelajaran create_pelajaran(const string& namaMapel, const string& kodeMapel) {
