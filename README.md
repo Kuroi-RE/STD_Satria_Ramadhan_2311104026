@@ -20,6 +20,10 @@ Repository untuk pengumpulan laporan pratikum dari mata kuliah Struktur Data
   - _Memahami Array_
   - _Memahami array 3dimensi_
   - _Fungsi & Prosedure_
+- Pertemuan 03
+  - _Memahami Abstract Data Type_
+  - _Dapat membuat ADT_
+  - _Cara membuat sebuah file yang hanya berisikan structur data, fungsi, dan kelas_
 
 ## Lessons Learned
 
