@@ -5,6 +5,8 @@
 */*.depend
 */*.cbp
 */*.exe
+*/*/*/*.exe
 */*/*.exe
 */*/*.docx
 *.docx
+tugas.cpp
