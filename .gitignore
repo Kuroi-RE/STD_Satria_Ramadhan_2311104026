@@ -4,9 +4,7 @@
 */*.layout
 */*.depend
 */*.cbp
-*/*.exe
-*/*/*/*.exe
-*/*/*.exe
+*.exe
 */*/*.docx
 *.docx
 tugas.cpp
