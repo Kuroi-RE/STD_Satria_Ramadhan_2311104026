@@ -5,7 +5,7 @@ struct Pohon {
     char data;
     Pohon *left, *right, *parent;
 
-    Pohon(char d, Pohon *l = NULL, Pohon *r = NULL, Pohon *p = NULL) 
+    Pohon(char d, Pohon *l = NULL, Pohon *r = NULL, Pohon *p = NULL)
         : data(d), left(l), right(r), parent(p) {}
 };
 
@@ -20,120 +20,147 @@ bool isEmpty() {
 }
 
 void buatNode(char data) {
-    if(isEmpty()) {
+    if (isEmpty()) {
         root = new Pohon(data, NULL, NULL, NULL);
-        cout << "\nNode " << data << " berhasil dibuat menjadi root" << endl;
+        cout << "Node " << data << " berhasil dibuat menjadi root." << endl;
     } else {
-        cout << "\nPohon sudah dibuat." << endl;
+        cout << "Tree sudah ada." << endl;
     }
 }
 
-Pohon *insertLeft(char data, Pohon *node) {
-    if(isEmpty()) {
-    cout << "\nBuat tree terlebih dahul!"<< endl;
-    return NULL;
+Pohon* insertLeft(char data, Pohon *node) {
+    if (isEmpty()) {
+        cout << "Buat tree terlebih dahulu!" << endl;
+        return NULL;
     }
     if (node->left != NULL) {
-        cout << "\n Node " << node->data << " sudah ada child di kiri "<< endl;
+        cout << "Node " << node->data << " sudah memiliki child kiri!" << endl;
         return NULL;
     }
     baru = new Pohon(data, NULL, NULL, node);
-    node ->left = baru;
-    cout << "\nNode " << data << " berhasil ditambahkan di kiri " << node->data << endl;
+    node->left = baru;
+    cout << "Node " << data << " berhasil ditambahkan di kiri " << node->data << endl;
     return baru;
 }
 
-Pohon *insertRight(char data, Pohon *node) {
+Pohon* insertRight(char data, Pohon *node) {
     if (isEmpty()) {
-        cout << "\nBuat tree terlebih dahulu!" << endl;
+        cout << "Buat tree terlebih dahulu!" << endl;
         return NULL;
     }
     if (node->right != NULL) {
-        cout << "\nNode " << node->data << " Sudah ada child dikanan!" << endl;
+        cout << "Node " << node->data << " sudah memiliki child kanan!" << endl;
         return NULL;
     }
     baru = new Pohon(data, NULL, NULL, node);
     node->right = baru;
-    cout << "\nNode " << data << " Berhasil ditambahkan ke child kanan " << node->data << endl;
+    cout << "Node " << data << " berhasil ditambahkan di kanan " << node->data << endl;
     return baru;
 }
 
-void update(char data, Pohon *node) {
-    if(isEmpty()) {
-        cout << "\nBuat tree terlebih dahulu!" << endl;
-        return;
-    }
+void tampilkanChild(Pohon *node) {
     if (!node) {
-        cout << "\nNode yang diinginkan tidak ada!" << endl;
+        cout << "Node tidak ditemukan!" << endl;
         return;
     }
-    char temp = node->data;
-    cout << "\nNode " << temp << " berhasil diubah menjadi " << data << endl;
-
+    cout << "Node " << node->data << " memiliki child: ";
+    if (node->left) cout << "Kiri: " << node->left->data << " ";
+    if (node->right) cout << "Kanan: " << node->right->data << " ";
+    if (!node->left && !node->right) cout << "Tidak ada.";
+    cout << endl;
 }
 
-void retrieve(Pohon *node) {
-    if(isEmpty()) {
-        cout << "\nBuat tree terlebih dahulu!" << endl;
-        return;
+void tampilkanDescendant(Pohon *node) {
+    if (!node) return;
+    if (node->left) {
+        cout << node->left->data << " ";
+        tampilkanDescendant(node->left);
     }
-    if(!node) {
-        cout << "\nNode yang diinginkan tidak ada!" << endl;
-        return;
+    if (node->right) {
+        cout << node->right->data << " ";
+        tampilkanDescendant(node->right);
     }
-    cout << "\nData node: " << node->data << endl;
 }
 
-void find(Pohon *node) {
-    if(isEmpty()) {
-        cout << "\nBuat tree terlebih dahulu!" << endl;
-        return;
-    }
-    if(!node) {
-        cout << "\nNode yang diinginkan tidak ada!" << endl;
-        return;
-    }
-    cout << "\nData node: " << node->data << endl;
-    cout << "Root: " << root->data << endl;
-    cout << "Parent: " << (node->parent ? node->parent->data : 'Tidak ada parent') << endl;
+bool is_valid_bst(Pohon *node, char min_val, char max_val) {
+    if (!node) return true;
+    if (node->data <= min_val || node->data >= max_val) return false;
+    return is_valid_bst(node->left, min_val, node->data) && is_valid_bst(node->right, node->data, max_val);
+}
 
-    if(node->parent) {
-        if(node->parent->left == node && node->parent->right){
-            cout << "Sibling: " << node->parent->right->data << endl;
-        } else if (node->parent->right == node && node->parent->left) {
-            cout << "Sibling: " << node->parent->left->data << endl;
-        } else {
-            cout << "Sibling: Tidak ada sibling" << endl;
-        }
-    }
+int cari_simpul_daun(Pohon *node) {
+    if (!node) return 0;
+    if (!node->left && !node->right) return 1;
+    return cari_simpul_daun(node->left) + cari_simpul_daun(node->right);
 }
 
 int main() {
     init();
-    buatNode('A');
-    Pohon *nodeB = insertLeft('B', root);
-    Pohon *nodeC = insertRight('C', root);
-    insertLeft('D', nodeB);
-    insertRight('E', nodeB);
-    insertLeft('F', nodeC);
-    insertLeft('G', nodeC);
+    int pilihan;
+    char data, parentData;
+    Pohon *parent;
 
-    cout << "\n== Pemanggila Retrieve ==" << endl;
-    retrieve(root);
-    retrieve(nodeB);
-    retrieve(nodeC);
+    do {
+        cout << "\nMenu Binary Tree:\n";
+        cout << "1. Buat Root\n";
+        cout << "2. Tambah Child Kiri\n";
+        cout << "3. Tambah Child Kanan\n";
+        cout << "4. Tampilkan Child\n";
+        cout << "5. Tampilkan Descendant\n";
+        cout << "6. Cek Apakah BST\n";
+        cout << "7. Hitung Simpul Daun\n";
+        cout << "8. Keluar\n";
+        cout << "Pilihan: ";
+        cin >> pilihan;
 
-    cout << "\n== Pemanggilan Find (Node B) ==" << endl;
-    find(nodeB);
-
-    cout << "\n== Pemanggilan Find (Node C) ==" << endl;
-    find(nodeC);
-
-    cout << "\n== Pemanggilan Update (Mengubah Node B menjadi Z)";
-    update('Z', nodeB);
-
-    cout << "\n== Pemanggilan Retrieve setelah Update";
-    retrieve(nodeB);
-
+        switch (pilihan) {
+            case 1:
+                cout << "Masukkan data root: ";
+                cin >> data;
+                buatNode(data);
+                break;
+            case 2:
+                cout << "Masukkan parent node: ";
+                cin >> parentData;
+                parent = root; 
+                cout << "Masukkan data: ";
+                cin >> data;
+                insertLeft(data, parent);
+                break;
+            case 3:
+                cout << "Masukkan parent node: ";
+                cin >> parentData;
+                parent = root;
+                cout << "Masukkan data: ";
+                cin >> data;
+                insertRight(data, parent);
+                break;
+            case 4:
+                cout << "Masukkan node: ";
+                cin >> data;
+                parent = root; 
+                tampilkanChild(parent);
+                break;
+            case 5:
+                cout << "Masukkan node: ";
+                cin >> data;
+                parent = root; 
+                cout << "Descendants: ";
+                tampilkanDescendant(parent);
+                cout << endl;
+                break;
+            case 6:
+                cout << (is_valid_bst(root, '0', 'z') ? "Tree adalah BST." : "Tree bukan BST.") << endl;
+                break;
+            case 7:
+                cout << "Jumlah simpul daun: " << cari_simpul_daun(root) << endl;
+                break;
+            case 8:
+                cout << "Keluar." << endl;
+                break;
+            default:
+                cout << "Pilihan tidak valid!" << endl;
+        }
+    } while (pilihan != 8);
     return 0;
 }
